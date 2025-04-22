@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 @Entity
 @Data
 public class User {
@@ -31,7 +32,7 @@ public class User {
 
     private USER_ROLE role;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY )
     private Set<Address> addresses=new HashSet<>();
 
     @JsonIgnore

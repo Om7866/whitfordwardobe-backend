@@ -77,14 +77,19 @@ public class AuthServiceImpl implements AuthService {
         verificationCode.setEmail(email);
         verificationCodeRepository.save(verificationCode);
 
-        String subject = " Whitford here.. \n" + "⚡ Your One-Time Password (OTP) for Secure Login";
-        String text = "Hello,\n\n"
-                + "We received a request to log in to your account. Please use the following One-Time Password (OTP) to proceed:\n\n"
-                + "🔑 Your OTP Code: " + otp + "\n\n"
-                + "This code is valid for 30 secound . Please do not share this code with anyone for security reasons.\n\n"
-                + "If you did not request this, you can ignore this email.\n\n"
-                + "Stay secure,\n"
-                + "The Whitford Team";
+        String subject = "Whitford - Your One-Time Password (OTP) for Secure Login";
+
+        String text = "<div style='font-family:Arial,sans-serif;color:#333;'>"
+                + "<h2>🔐 Your OTP Code</h2>"
+                + "<p>Hello,</p>"
+                + "<p>We received a request to log in to your <strong>Whitford</strong> account. Please use the following One-Time Password (OTP) to continue:</p>"
+                + "<div style='margin: 20px 0; padding: 10px; background-color: #f1f1f1; border-left: 5px solid #4CAF50;'>"
+                + "<p style='font-size: 20px; font-weight: bold; margin: 0;'>👉 OTP: <span style='color:#d32f2f;'>" + otp + "</span></p>"
+                + "</div>"
+                + "<p><strong>Note:</strong> This OTP is valid for <strong>30 seconds</strong>. Do <strong>not</strong> share this code with anyone.</p>"
+                + "<p>If you did not request this, please ignore this email.</p>"
+                + "<p>Stay safe,<br><strong>The Whitford Team</strong></p>"
+                + "</div>";
 
         emailService.sendVerificationOtpEmail(email, otp, subject, text);
         
